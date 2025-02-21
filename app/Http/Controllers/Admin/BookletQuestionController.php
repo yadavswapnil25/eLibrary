@@ -65,12 +65,22 @@ class BookletQuestionController extends Controller
             'option_3' => 'required_if:question_type,mcq',
             'option_4' => 'required_if:question_type,mcq',
             'image'         => 'required_if:question_type,image|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'pdf'         => 'required_if:question_type,pdf|mimes:pdf',
+            'video'         => 'required_if:question_type,video|mimes:mp4',
             'answer' => 'nullable',
 
         ]);
         $file_name = null;
         if ($request->hasFile('image')) {
             $file_name = $this->uploadImg($request->image, 'bookletsQuestions');
+        }
+
+        if($request->hasFile('pdf')) {
+            $file_name = $this->uploadPdf($request->pdf, 'bookletsQuestions');
+        }
+
+        if($request->hasFile('video')) {
+            $file_name = $this->uploadVideo($request->video, 'bookletsQuestions');
         }
         $data = [
             'booklet_id'     => $request->booklet_id,

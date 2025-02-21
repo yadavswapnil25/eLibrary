@@ -152,6 +152,18 @@ trait AuthCode
         }
         return $filename;
     }
+
+    public function uploadPdf($file, $path,$path_type='public'){
+        $filename = date('YmdHis') . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        Storage::disk($path)->put($filename, File::get($file));
+        return $filename;
+    }
+
+    public function uploadVideo($file, $path,$path_type='public'){
+        $filename = date('YmdHis') . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        Storage::disk($path)->put($filename, File::get($file));
+        return $filename;
+    }
     public function loginUser($username,$password,$loginType){
         /**
          * 0 => email

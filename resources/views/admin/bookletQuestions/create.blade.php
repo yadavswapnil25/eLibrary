@@ -63,6 +63,8 @@
                                             <option value="mcq" {{ old('question_type') == 'mcq' ? 'selected' : '' }}>MCQ</option>
                                             <option value="text" {{ old('question_type') == 'text' ? 'selected' : '' }}>Text</option>
                                             <option value="image" {{ old('question_type') == 'image' ? 'selected' : '' }}>Image</option>
+                                            <option value="pdf" {{ old('question_type') == 'pdf' ? 'selected' : '' }}>PDF</option>
+                                            <option value="video" {{ old('question_type') == 'video' ? 'selected' : '' }}>VIDEO</option>
 
                                         </select>
                                         @error('question_type')
@@ -148,6 +150,20 @@
                                         <input type="file" id="image" name="image" class="form-control">
                                     </div>
                                 </div>
+
+                                <div class="col-md-6" id="pdf-uploader" style="display: none;">
+                                    <div class="form-group
+                                        <label for="pdf">Upload PDF</label>
+                                        <input type="file" id="pdf" name="pdf" class="form-control">
+                                    </div>
+                                </div>  
+
+                                <div class="col-md-6" id="video-uploader" style="display: none;">
+                                    <div class="form-group  
+                                        <label for="video">Upload Video</label>
+                                        <input type="file" id="video" name="video" class="form-control">            
+                                    </div>
+                                </div>
                              
 
                             </div>
@@ -176,28 +192,61 @@
     const mcqOptions = document.getElementById('mcq-options');
     const answerTextarea = document.getElementById('answer-textarea');
     const imageUploader = document.getElementById('image-uploader');
+    const pdfUploader = document.getElementById('pdf-uploader');
+    const videoUploader = document.getElementById('video-uploader');
     const correctAnswer = document.getElementById('correct_answer');
 
     // Show or hide MCQ options based on the selected type
     questionType.addEventListener('change', function() {
+       
         if (questionType.value === 'mcq') {
             mcqOptions.style.display = 'block';
             correctAnswer.style.display = 'block';
             answerTextarea.style.display = 'none';
             imageUploader.style.display = 'none';
+            pdfUploader.style.display = 'none';
+            videoUploader.style.display = 'none';
         } else if (questionType.value === 'text') {
             mcqOptions.style.display = 'none';
             answerTextarea.style.display = 'block';
             imageUploader.style.display = 'none';
+            pdfUploader.style.display = 'none';
+            videoUploader.style.display = 'none';
+            correctAnswer.style.display = 'none';
+
         } else if (questionType.value === 'image') {
             mcqOptions.style.display = 'none';
             answerTextarea.style.display = 'none';
             imageUploader.style.display = 'block';
-        } else {
+            pdfUploader.style.display = 'none';
+            videoUploader.style.display = 'none';
+            correctAnswer.style.display = 'none';
+
+        }else if (questionType.value === 'pdf') {
+            mcqOptions.style.display = 'none';
+            answerTextarea.style.display = 'none';
+            imageUploader.style.display = 'none';
+            videoUploader.style.display = 'none';
+            correctAnswer.style.display = 'none';
+
+            pdfUploader.style.display = 'block';
+        } else if (questionType.value === 'video') {
+            mcqOptions.style.display = 'none';
+            answerTextarea.style.display = 'none';
+            imageUploader.style.display = 'none';
+            pdfUploader.style.display = 'none';
+            correctAnswer.style.display = 'none';
+
+            videoUploader.style.display = 'block';
+        }else {
             mcqOptions.style.display = 'none';
             correctAnswer.style.display = 'none';
             answerTextarea.style.display = 'none';
             imageUploader.style.display = 'none';
+            pdfUploader.style.display = 'none';
+            videoUploader.style.display = 'none';
+            correctAnswer.style.display = 'none';
+
         }
     });
 
