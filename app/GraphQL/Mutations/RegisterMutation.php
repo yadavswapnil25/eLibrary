@@ -33,7 +33,13 @@ class RegisterMutation extends Mutation
             ],
             'email' => [
                 'type' => Type::nonNull(Type::string()),
-            ]
+            ],
+            'phone' => [
+                'type' => Type::nonNull(Type::string()),
+            ],
+            'collage' => [
+                'type' => Type::nonNull(Type::string()),
+            ],
         ];
     }
 
@@ -47,6 +53,8 @@ class RegisterMutation extends Mutation
                 'first_name' => 'required|string',
                 'last_name' => 'required|string',
                 'password' => 'required|string|min:8',
+                'phone' => 'required',
+                'collage' => 'required|string',
             ]);
             // dd($validator);
             if ($validator->fails()) {
@@ -63,6 +71,8 @@ class RegisterMutation extends Mutation
             $user->email = $args['email'];
             $user->role_id = 3;
             $user->password = bcrypt($args['password']);
+            $user->phone = $args['phone'];
+            $user->collage = $args['collage'];
             $user->email_verified_at = now();
             $user->created_at = now();
             $user->updated_at = now();

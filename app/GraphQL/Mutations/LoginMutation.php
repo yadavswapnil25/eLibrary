@@ -27,12 +27,12 @@ class LoginMutation extends Mutation
             'password' => [
                 'type' => Type::nonNull(Type::string()),
             ],
-            'client_id' => [
-                'type' => Type::nonNull(Type::string()),
-            ],
-            'client_secret' => [
-                'type' => Type::nonNull(Type::string()),
-            ],
+            // 'client_id' => [
+            //     'type' => Type::nonNull(Type::string()),
+            // ],
+            // 'client_secret' => [
+            //     'type' => Type::nonNull(Type::string()),
+            // ],
 
             
         ];
@@ -45,10 +45,10 @@ class LoginMutation extends Mutation
             'password' => $args['password'],
         ];
     
-        $client = \Laravel\Passport\Client::where('id', $args['client_id'])->first();
-        if (!$client || $client->secret !== $args['client_secret']) {
-            throw new \Exception('Invalid client credentials');
-        }
+        // $client = \Laravel\Passport\Client::where('id', $args['client_id'])->first();
+        // if (!$client || $client->secret !== $args['client_secret']) {
+        //     throw new \Exception('Invalid client credentials');
+        // }
     
         if (!Auth::attempt($credentials)) {
             throw new \Exception('Invalid user credentials');

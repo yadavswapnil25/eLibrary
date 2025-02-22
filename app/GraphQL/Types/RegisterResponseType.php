@@ -27,6 +27,14 @@ class RegisterResponseType extends GraphQLType
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Last name of the user',
             ],
+            'phone' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'Phone number of the user',
+            ],
+            'collage' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'Collage of the user',
+            ],
             'message' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'Message of the operation',

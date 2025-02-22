@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
+use App\Enums\Branches;
 use Carbon\Carbon;
 use App\Models\Booklet;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\Facades\GraphQL;
+use App\Enums\Contents;
+
 class BookletsQuery extends Query
 {
     protected $allowedMethods = ['get', 'post'];
@@ -44,9 +47,9 @@ class BookletsQuery extends Query
                     $query->select(['id', 'question_id', 'created_at']);
                 }
             ])
-            ->whereHas('examEnrollment', function ($query) use ($args) {
-                $query->where('user_id', $args['user_id']);
-            })
+            // ->whereHas('examEnrollment', function ($query) use ($args) {
+            //     $query->where('user_id', $args['user_id']);
+            // })
             ->get()
             ->map(function ($booklet) {
               
@@ -61,9 +64,10 @@ class BookletsQuery extends Query
             
                 return $booklet;
             });
-    
+            
             return $data;
         }
+        
         return Booklet::all();
     }
 }
