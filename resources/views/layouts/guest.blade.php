@@ -18,7 +18,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
             <a href="{{ url('/') }}" class="brand-link">
-                <img src="https://www.invezzatechnologies.com/wp-content/uploads/2024/06/Invezza-logo.svg" alt="Invezza Logo" class="brand-image img-circle elevation-3"
+                <img src="{{('logo.png')}}" width="100px" height="100px" alt="Study Buddy Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
             </a>
             </div>

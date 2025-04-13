@@ -19,7 +19,7 @@
             </div>  
             
             <footer class="main-footer">
-                <strong>Copyright &copy; {{ date('Y') }} <a href="{{ url('/')}}">Invezza</a>.</strong>
+                <strong>Copyright &copy; {{ date('Y') }} <a href="{{ url('/')}}">Study Buddy</a>.</strong>
                 All rights reserved.
             </footer>
             

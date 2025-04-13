@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BookletController;
 use App\Http\Controllers\Admin\BookletQuestionController;
+use App\Http\Controllers\Api\BookletController as ApiBookletController;
 
 
 Route::get('/', function () {
@@ -41,14 +42,19 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     
     // Define resource routes for exam enrollments and custom routes for edit, update, and delete actions.
     Route::resource('examEnrollments', ExamEnrollmentController::class);
-    Route::get('/examEnrollment/edit/{id}', [ExamEnrollmentController::class, 'edit'])->name('examEnrollments.edit');
-    Route::post('/examEnrollment/update', [ExamEnrollmentController::class, 'update'])->name('examEnrollments.update');
+    // Route::get('/examEnrollment/edit/{id}', [ExamEnrollmentController::class, 'edit'])->name('examEnrollments.edit');
+    // Route::post('/examEnrollment/update', [ExamEnrollmentController::class, 'update'])->name('examEnrollments.update');
     Route::get('/examEnrollment/delete/{id}', [ExamEnrollmentController::class, 'destroy'])->name('examEnrollments.delete');
     // Route for fetching soft-deleted exam enrollments
     // Route to restore a soft-deleted exam enrollment
     Route::get('/examEnrollment/restore/{id}', [ExamEnrollmentController::class, 'restoreExamEnrollment'])->name('examEnrollment.restore');
 
 
+});
+Route::prefix('api')->group(function () {
+
+    Route::get('/booklets', [ApiBookletController::class, 'getBooklet']);
+    Route::get('/{id}/booklet-questions', [ApiBookletController::class, 'getBookletQuestions']);
 });
 
 require __DIR__.'/auth.php';
