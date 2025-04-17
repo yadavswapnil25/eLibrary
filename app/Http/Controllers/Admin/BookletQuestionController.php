@@ -58,16 +58,10 @@ class BookletQuestionController extends Controller
         $validator = $request->validate([
             'booklet_id'          => 'required',
             'question_type' => 'required|string',
-            'marks'   => 'required|integer',
             'question'          => 'required',
-            'option_1' => 'required_if:question_type,mcq',
-            'option_2' => 'required_if:question_type,mcq',
-            'option_3' => 'required_if:question_type,mcq',
-            'option_4' => 'required_if:question_type,mcq',
-            'image'         => 'required_if:question_type,image|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'pdf'         => 'required_if:question_type,pdf|mimes:pdf',
+            'image' => 'nullable|mimes:jpeg,jpg,png|max:2048',
+            'pdf' => 'nullable|mimes:pdf|max:2048',
             'video'         => 'required_if:question_type,video|mimes:mp4',
-            'answer' => 'nullable',
 
         ]);
         $file_name = null;
